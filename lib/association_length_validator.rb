@@ -1,7 +1,7 @@
 class AssociationLengthValidator < ActiveModel::Validations::LengthValidator
   def validate_each(record, attribute, value)
     value = value.reject(&:marked_for_destruction?)
-    value = select_items(record, value, options[:select]) if options[:select]
+    value = select_items(record, value, **options[:select]) if options[:select]
 
     super(record, attribute, value)
   end
